@@ -1,0 +1,132 @@
+body {
+    background-color: rgb(8, 8, 42) !important;
+}
+
+
+
+.mode-toggle {
+    background-color: blueviolet;
+    border: none;
+    padding: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.mode-toggle:hover {
+    background-color: rgb(75, 75, 218);
+    transform: scale(1.1);
+}
+
+
+.mode-toggle2 {
+    background-color: blueviolet;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.mode-toggle2:hover {
+    background-color: rgb(80, 80, 228);
+    transform: scale(1.1);
+}
+
+
+
+.play_main {
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+
+    .play_inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+
+
+        .pl_left {
+
+            .pl_left_inner {
+                padding: 10px;
+                background: rgba(1, 18, 74, 0.897);
+                box-shadow: 2px 2px 5px rgba(158, 105, 255, 0.507) inset,
+                    -2px -2px 5px rgba(91, 180, 253, 0.507) inset;
+                width: fit-content;
+                transition: all 120ms ease-in;
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: 5px 5px 7px rgba(105, 255, 218, 0.329) inset,
+                        -5px -5px 7px rgba(25, 255, 255, 0.479) inset;
+                    scale: 1.04;
+                }
+
+                .pl_left_top {
+                    height: 160px;
+                    width: 190px;
+                    background-size: cover !important;
+                    background-position: center !important;
+                    background-repeat: no-repeat !important;
+                }
+
+                .pl_left_bottom {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .pl_left_bottom_inner {
+                        .plname {
+                            font-size: 0.9rem;
+                            font-weight: 600;
+                            color: white;
+                        }
+
+                        .pldesc {
+                            font-size: 0.7rem;
+                            color: white;
+                            opacity: 0.8;
+                        }
+
+                        .plby {
+                            font-size: 0.6rem;
+                            color: white;
+                            opacity: 0.7;
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+
+
+.plbtn {
+    #plbtn-play {
+        color: white !important;
+        font-size: 2rem !important;
+
+        &:hover {
+            color: rgb(200, 0, 255) !important;
+        }
+    }
+}

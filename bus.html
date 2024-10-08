@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Then Bus | Rhythmo ~ be with music</title>
+  <!-- icon -->
+  <link rel="icon" href="img/logoR.png" sizes="200x200" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    .mode-toggle2 {
+      background-color: blueviolet;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      padding: 2px;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .mode-toggle2:hover {
+      background-color: rgb(80, 80, 228);
+      transform: scale(1.1);
+    }
+
+    :root {
+      --bg-color: #f0f2f5;
+      --text-color: #333333;
+      --primary-color: #2e2a61;
+      --secondary-color: #ffffff;
+      --hover-color: #3a5ed5;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #ffffff;
+      --primary-color: #3a7bd5;
+      --secondary-color: #2c2c2c;
+      --hover-color: #4a90e2;
+      --shadow-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 200px;
+
+      background: rgb(12, 11, 59);
+      background: linear-gradient(180deg, rgb(2, 1, 50) 6%, rgb(4, 14, 48) 71%);
+      padding: 20px;
+      box-shadow: 2px 0 5px var(--shadow-color);
+      transition: all 0.3s;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 15px;
+      background: rgba(1, 18, 74, 1);
+      padding: 6px;
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(158, 105, 255, 0.507) inset,
+        -2px -2px 5px rgba(91, 180, 253, 0.507) inset;
+      transition: all 120ms ease-in;
+
+      &:hover {
+        scale: 1.02;
+      }
+
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.8rem;
+      transition: all 130ms ease-in;
+
+      &:hover {
+        scale: 1.1;
+      }
+    }
+
+    .sidebar ul li a:hover {
+      color: blueviolet;
+    }
+
+    .sidebar ul li a i {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 20px;
+      padding-bottom: 100px;
+      background: url("img/bg.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .playlist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .song {
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+      background: rgba(1, 18, 74, 0.744);
+      box-shadow: 2px 2px 5px rgba(158, 105, 255, 0.507) inset,
+        -2px -2px 5px rgba(91, 180, 253, 0.507) inset;
+      width: fit-content;
+      border-radius: 10px;
+      transition: all 120ms ease-in;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 5px 5px 7px rgba(105, 255, 218, 0.329) inset,
+          -5px -5px 7px rgba(25, 255, 255, 0.479) inset;
+        transform: translateY(-5px);
+      }
+    }
+
+
+
+    .song img {
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .song-info {
+      padding: 15px;
+    }
+
+    .song-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      text-transform: capitalize;
+    }
+
+    .song-artist {
+      font-size: 0.9em;
+      color: white;
+      opacity: 0.8;
+      text-transform: capitalize;
+    }
+
+    .music-controller {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 5px 5px 10px rgba(158, 105, 255, 0.726) inset,
+        -5px -5px 10px rgba(91, 180, 253, 0.733) inset;
+      background: rgb(1, 18, 74);
+      border-radius: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .music-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .music-info img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 15px;
+    }
+
+    .music-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .music-title {
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .music-artist {
+      font-size: 0.9em;
+      opacity: 0.8;
+      text-transform: capitalize;
+    }
+
+    .music-controls {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      justify-content: center;
+      margin: 0 20px;
+    }
+
+    .music-controls button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5em;
+      cursor: pointer;
+      margin: 0 15px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .music-controls button:hover {
+      color: blueviolet;
+      transform: scale(1.1);
+    }
+
+    .progress-container {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      max-width: 400px;
+    }
+
+    .progress-bar {
+      flex-grow: 1;
+      height: 5px;
+      background-color: rgb(255, 255, 255);
+      margin: 0 10px;
+      cursor: pointer;
+      position: relative;
+      border-radius: 5px;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: blueviolet;
+      width: 0%;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .progress::after {
+      content: "";
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+    }
+
+    .time {
+      font-size: 0.9em;
+      min-width: 45px;
+    }
+
+    .mode-toggle {
+      background-color: blueviolet;
+      border: none;
+      padding: 2px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .mode-toggle:hover {
+      background-color: var(--hover-color);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .playlist {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .music-info img {
+        display: none;
+      }
+
+      .music-info {
+        flex-direction: column;
+      }
+
+      .music-controls {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <a href="playlist.html" class="mode-toggle2">
+      <i class="fa-solid fa-arrow-left-long"></i>
+    </a>
+    <main>
+      <div class="playlist" id="playlist">
+        <!-- Songs will be rendered here -->
+      </div>
+    </main>
+    <div class="music-controller">
+      <div class="music-info">
+        <img src="" alt="Album cover" id="albumCover" />
+        <div class="music-details">
+          <div class="music-title" id="songTitle"></div>
+          <div class="music-artist" id="songArtist"></div>
+        </div>
+      </div>
+      <div class="music-controls">
+        <button id="prevBtn"><i class="fas fa-backward"></i></button>
+        <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+        <button id="nextBtn"><i class="fas fa-forward"></i></button>
+      </div>
+      <div class="progress-container">
+        <span class="time" id="currentTime">0:00</span>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress" id="progress"></div>
+        </div>
+        <span class="time" id="duration">0:00</span>
+      </div>
+    </div>
+    <a href="about.html" class="mode-toggle" id="modeToggle">
+      <img src="img/deve.png" width="30" alt="">
+    </a>
+  </div>
+
+  <audio id="audioPlayer"></audio>
+
+  <script src="js/bus.js"></script>
+</body>
+
+</html>
